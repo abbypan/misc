@@ -1,0 +1,17 @@
+{
+   "name": "__MSG_extName__",
+   "version": "1.0", 
+   "description": "Search Novel Bubble",
+   "permissions": [ "contextMenus", "tabs" ],
+   "icons": {
+      "16": "searchnovelbubble16.png",
+      "48": "searchnovelbubble48.png",
+      "128": "searchnovelbubble128.png" 
+   },
+   "background_page": "background.html",
+  "browser_action" : {
+    "default_popup": "background.html",
+    "default_icon" : "searchnovelbubble16.png"
+  },
+   "default_locale":"en"
+}

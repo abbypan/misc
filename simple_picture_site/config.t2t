@@ -1,0 +1,19 @@
+
+
+%配置文档
+
+%!target  : html
+%!encoding: utf-8
+%!options : --css-sugar
+%!options : --toc-level=3
+%!options : --no-toc
+
+
+
+%!preproc: '{tax}'   'alkdfjsa'
+%!preproc: '{phone}'   'alkdfjsa'
+%!preproc: '{email}'   'alkdfjsa'
+%!preproc: '{company}'   'alkdfjsa'
+%!preproc: '{address}'   'alkdfjsa'
+
+%!postproc: {{(.*?)}}	<\1>
