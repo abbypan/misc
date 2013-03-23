@@ -8,12 +8,14 @@ if(!$out){
     $out =~s/[^.]+$/mp4/;
 }
 
-print "video: $in -> $out\n";
 
 my $info=`ffmpeg -i "$in" 2>&1 | grep fps`;
 my ($rate) = $info=~/(\d+) kb/; 
 
-my $cmd =qq[ffmpeg -i "$in" -y -strict -2 -b ${rate}k "$out"];
-system($cmd);
+print "video: $in -> $out, rate : $rate kb/s\n";
+my $cmd =qq[ffmpeg -i "$in" -y -strict -2 -b:${rate}k -o "$out"];
 
-unlink($in) if(-f $out);
+eval { 
+    `$cmd >/dev/null 2>&1`; 
+    unlink($in) if(-f $out and -s $out);
+};
