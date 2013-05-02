@@ -1,0 +1,38 @@
+帖子处理器
+
+
+安装:
+1、先安装perl，windows下可以用strawberry perl
+2、在tiezi目录下执行perl install.pl
+
+【下载CJJ的帖子】
+站点：CJJ, discuz 6 左右的版本
+用法：./tiezi.pl -s http://xxx.xxx.xxx -u username -p password
+注：暂停更新
+
+
+【下载红晋江的帖子】
+
+站点：
+红晋江 http://bbs.jjwxc.net
+
+用法：
+在tiezi目录下执行 perl tiezi-hjj.pl -h
+
+
+【将上述下载的帖子导入discuz，自动新建帐号】
+
+例子：将帖子author-subject.html的内容导入版块3(fid=3)
+1、在LoadThread目录下配置SiteConfig.pm
+2、在tiezi目录下执行 perl load_tiezi_into_discuz.pl 3 author-subject.html
+
+
+【有mysql帐号，无ftp帐号，备份discuz论坛附件】
+
+例子：备份论坛附件到dest_backup_dir目录
+1、在LoadThread目录下配置SiteConfig.pm
+2、在tiezi目录下执行 perl backup_discuz_forum_attach.pl dest_backup_dir
+
+注：需要用到mkdir和curl
+mkdir win32版本：http://unxutils.sourceforge.net/
+curl win32版本：http://curl.haxx.se/latest.cgi?curl=win32-nossl

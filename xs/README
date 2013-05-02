@@ -1,0 +1,14 @@
+小说下载器
+
+站点：
+
+绿晋江 http://www.jjwxc.net
+豆豆小说网 http://www.dddbbb.net
+
+
+安装:
+1、先安装perl，windows下可以用strawberry perl
+2、在xs目录下执行perl install.pl
+
+用法：
+在xs目录下执行 perl xs.pl -h

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>《<: $book :>》<: $writer :></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+body {
+    font-family:arial,verdana,monaco,sans-serif;
+    overflow:auto; line-height:150%; margin:0; padding:0; 
+}
+a { text-decoration:none; }
+a:hover { text-decoration:underline; font-weight:700;  }
+img { border:0; float:right;}
+table { border-collapse:collapse; border:1px solid; width:100%; }
+th { padding:.5em 0; }
+td { padding:.2em .5em; text-align:center; }
+#title { text-align:center; font-weight:700; margin:0; padding:.25em; }
+#intro { text-indent:2em; }
+
+body { background:#eefaee; color:#000; border:1px solid #090; }
+th { background:#9fd59e; }
+#title { border-bottom:3px solid #090; }
+table,th,td { border:1px solid #090; }
+</style>
+</head>
+<body>
+<div id="title">
+<a href="<: $writer_url :>" id="writer"><: $writer :></a>
+《<a href="<: $index_url :>" id="book"><: $book :></a>》
+</div>
+<div id="book_info">
+<img src="<: $book_img :>" />
+<b>文案</b>
+<: $intro :>
+<b>基本信息</b>
+<ul>
+<li>来源：<span id="site"><: $site :></span></li>
+<li>系列：<span id="series"><: $series :></span></li>
+<li>进度：<span id="progress"><: $progress :></span></li>
+<li>全文字数：<span id="word_num"><: $word_num :></span></li>
+<li>章节数：<span id="chapter_num"><: $chapter_num :></span></li>
+</ul>
+</div>
+<table id="chapter_info" summary="5 column">
+<tr>
+<th>章节</th>
+<th>标题</th>
+<th>提要</th>
+<th>字数</th>
+<th>更新时间</th>
+</tr>
+
+: for $chapter_info -> $chap {
+    : if($chap.volume) {
+<tr>
+<td colspan="5" align="center"><: $chap.volume :></td>
+</tr>
+    :}
+    : else {
+<tr>
+<td><: $chap.id :></td>
+<td><a href="<: $chap.id | format('%03d.html') :>"><: $chap.title :></a></td>
+<td><: $chap.abstract :></td>
+<td><: $chap.num :></td>
+<td class="update_time" type="<: $chap.type :>"><: $chap.time :></td>
+</tr>
+: } 
+: } 
+</table>
+</body>
+</html>

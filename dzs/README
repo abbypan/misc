@@ -1,0 +1,11 @@
+安装:
+1、先安装perl，windows下可以用strawberry perl
+2、在rdzs目录下执行perl install.pl
+
+用法：
+
+txt转html : perl dzs.pl -w writer -b book -i book.txt
+zip转html : perl rdzs-zip2html.pl writer-book.zip
+html转txt : perl rdzs-html2txt.pl writer-book.html
+将zip小说发送的指定wordpress空间 : perl xs_to_wordpress.pl -f somefile.zip -c 类别1,类别2 -t 标签1,标签2
+将html小说发送到指定邮箱: perl xsmail.pl writer-novel.html

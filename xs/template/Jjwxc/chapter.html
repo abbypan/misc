@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+<: $writer :>
+《<: $book :>》
+<: $chapter :>
+</title>
+<style type="text/css">
+body { 
+    font-family:arial,verdana,monaco,sans-serif;
+    overflow:auto; line-height:150%; margin:0; padding:0;
+}
+a { text-decoration:none; }
+a:hover { text-decoration:underline; font-weight:400; }
+img { border:0; }
+p {text-indent:2em; }
+#title,#footer { text-align:center; font-weight:700; margin:0; padding:.25em; }
+#content { margin:1em 2em; }
+#footer a { padding:0 1em; }
+
+body { background:#eefaee; color:#000; border:1px solid #090; }
+#footer { border-top:3px solid #090; }
+#title { border-bottom:3px solid #090; }
+#writer_say { color:#009a00; }
+</style>
+</head>
+<body>
+<div id="title">
+    <a href="<: $chapter_url :>" id="chapter"><: $chapter :></a>
+</div>
+<div id="content">
+<: $content :>
+</div>
+: if($writer_say) {
+<div id="writer_say">
+<: $writer_say :>
+</div>
+: }
+<div id="footer">
+<a href="<: $chapter_id - 1 | format('%03d.html') :>">上一页</a>
+<a href="000.html">返回</a>
+<a href="<: $chapter_id + 1 | format('%03d.html') :>">下一页</a>
+</div>
+</body>
+</html>

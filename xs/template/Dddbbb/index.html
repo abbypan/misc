@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+body {
+font-family:arial,verdana,monaco,sans-serif;
+overflow:auto; line-height:150%; margin:0; padding:0;
+}
+a { text-decoration:none; }
+a:hover { text-decoration:underline; font-weight:700; }
+img { border:0; }
+#title { text-align:center; font-weight:700; margin:0; padding:.25em; }
+#intro { text-indent:2em; }
+#book_info,#cover { float:right; }
+
+body {background:#e7f3ff;;color:#000;}
+#title {border-bottom:3px solid #666666;}
+#intro {border-bottom:3px solid #666666;}
+</style>
+<title>《<: $book :>》<: $writer :></title>
+</head>
+<body>
+<div id="title">
+<a href="<: $writer_url :>" id="writer"><: $writer :></a>
+《<a href="<: $index_url :>" id="book"><: $book :></a>》
+</div>
+<img id="cover" src="<: $book_img :>" />
+<b>文案</b>
+<div id="intro">
+<: $intro :>
+</div>
+<b>小说信息</b>
+<ul id="book_info">
+<li>来源：<span id="site"><: $site :></span></li>
+<li>章节数：<span id="chapter_num"><: $chapter_num :></span></li>
+</ul>
+<ul id="chapter_info">
+: for $chapter_info -> $chap {
+<li><a href="<: $chap.id | format('%03d.html') :>"><: $chap.title :></a></li>
+: }
+</ul>
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿{
+  "name": "Jjwxc",
+  "version": "0.0.1",
+  "manifest_version" : 2, 
+  "icons":{
+	"16":"jjwxc16.png",
+	"32":"jjwxc32.png",
+	"128":"jjwxc128.png"
+  },
+  "permissions": ["contextMenus", "tabs"],
+  "background" : {
+      "page": "background.html"
+  }, 
+  "homepage_url": "http://abbypan.github.com/"
+}
