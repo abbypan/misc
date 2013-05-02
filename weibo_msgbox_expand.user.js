@@ -14,6 +14,25 @@
 // ==/UserScript==
 //
 
+
+function displayDiv (xpath) {
+    var at = getDivFromA(xpath);
+    var atDiv = at.parentNode;
+
+    at.setAttribute('node-type', 'lev');
+    atDiv.setAttribute('style', '');
+    atDiv.setAttribute('class', 'lev');
+
+    return atDiv;
+}
+
+function noDisplayDiv (xpath) {
+    var at = getDivFromA(xpath);
+    var atDiv = at.parentNode;
+    atDiv.setAttribute('style', 'display:none');
+    return atDiv;
+}
+
 function getDivFromA (xpath) {
     var at = document.evaluate(
             xpath,
@@ -25,33 +44,20 @@ function getDivFromA (xpath) {
     return atA;
 }
 
-function ctlDisplayDiv (xpath, isDisplay) {
-    var at = getDivFromA(xpath);
-    var atDiv = at.parentNode;
-    if(isDisplay){
-        at.setAttribute('node-type', 'lev');
-        atDiv.setAttribute('style', '');
-        atDiv.setAttribute('class', 'lev');
-    }else{
-        atDiv.setAttribute('style', 'display:none');
-    }
-    return atDiv;
-}
-
 // @
-var atDiv = ctlDisplayDiv('//a[@nm="mention_all"]', 1); 
+displayDiv('//a[@nm="mention_all"]'); 
 
 //评论
-ctlDisplayDiv('//a[@nm="cmt_all"]', 1); 
+displayDiv('//a[@nm="cmt_all"]'); 
 
 //私信
-ctlDisplayDiv('//a[@nm="dm"]',1); 
+displayDiv('//a[@nm="dm"]'); 
 
 //消息
-ctlDisplayDiv('//a[@nm="messagebox_c"]',0);
+noDisplayDiv('//a[@nm="messagebox_c"]');
 
 //收藏
-ctlDisplayDiv('//a[@href="/fav?leftnav=1&wvr=5"]',0);
+noDisplayDiv('//a[@href="/fav?leftnav=1&wvr=5"]');
 
 //密友
-ctlDisplayDiv('//a[@href="/mymeyou?ismiyou=1&wvr=5&step=2"]',0);
+noDisplayDiv('//a[@href="/mymeyou?ismiyou=1&wvr=5&step=2"]');
