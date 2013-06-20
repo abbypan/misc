@@ -48,7 +48,7 @@ sub alter_chapter_before_parse {
     #解析chapter内容之前，先做一些简单文本处理
 }
 
-sub get_query_result_urls {
+sub parse_query_result_urls {
 
     #查询结果为多页时，取得除第1页之外的其他结果页面的url
 }

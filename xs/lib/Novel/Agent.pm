@@ -549,12 +549,12 @@ sub get_query_ref {
     my ( $self, $type, $keyword ) = @_;
 
     my $key = encode( $self->{parser}->charset, $keyword );
-    my ( $url, $post_vars ) = $self->{parser}->make_query_url( $type, $key );
+    my ( $url, $post_vars ) = $self->{parser}->make_query_request( $type, $key );
     my $html_ref = $self->{browser}->get_url_ref( $url, $post_vars );
     return unless $html_ref;
 
     my $result          = $self->{parser}->parse_query($html_ref);
-    my $result_urls_ref = $self->{parser}->get_query_result_urls($html_ref);
+    my $result_urls_ref = $self->{parser}->parse_query_result_urls($html_ref);
     return $result unless ( defined $result_urls_ref );
 
     for my $url (@$result_urls_ref) {

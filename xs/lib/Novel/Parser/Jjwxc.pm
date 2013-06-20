@@ -279,7 +279,7 @@ sub parse_writer {
     return $ref;
 } ## end sub parse_writer
 
-sub make_query_url {
+sub make_query_request {
 
     my ( $self, $type, $keyword ) = @_;
     my %Query_Type = (
@@ -293,9 +293,9 @@ sub make_query_url {
     my $url = qq[$self->{domain}/search.php?kw=$keyword&t=$Query_Type{$type}];
 
     return $url;
-} ## end sub make_query_url
+} ## end sub make_query_request
 
-sub get_query_result_urls {
+sub parse_query_result_urls {
 
     ###查询结果为多页
     my ( $self, $html_ref ) = @_;
@@ -312,7 +312,7 @@ sub get_query_result_urls {
     my $ref = $parse_query->scrape($html_ref);
 
     return $ref;
-} ## end sub get_query_result_urls
+} ## end sub parse_query_result_urls
 
 sub parse_query {
     my ( $self, $html_ref ) = @_;

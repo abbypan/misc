@@ -174,7 +174,7 @@ sub parse_writer {
     return $ref;
 } ## end sub parse_writer
 
-sub make_query_url {
+sub make_query_request {
 
     my ( $self, $type, $keyword ) = @_;
 
@@ -190,7 +190,7 @@ sub make_query_url {
         },
     );
 
-} ## end sub make_query_url
+} ## end sub make_query_request
 
 sub parse_query {
 
