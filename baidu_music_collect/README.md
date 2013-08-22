@@ -7,6 +7,8 @@ baidu_music_collect
 
 打开firefox，启用mozrepl，登录百度音乐
 
+假设脚本位于 d:\software\script\baidu_music_collect.pl
+
 perl d:\software\script\baidu_music_collect.pl  a.mp3
 
 perl d:\software\script\baidu_music_collect.pl d:\music\周华健
@@ -39,9 +41,15 @@ windows版本可选用：http://strawberryperl.com/
 **  安装 perl模块
 
 cpan App::cpanminus
+
 cpanm -n -f Data::Dumper
+
 cpanm -n -f Encode::Locale
+
 cpanm -n -f Encode
+
 cpanm -n -f MP3::Info
+
 cpanm -n -f WWW::Mechanize::Firefox
+
 cpanm -n -f Web::Scraper
