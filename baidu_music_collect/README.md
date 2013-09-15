@@ -18,8 +18,8 @@ cd d:\software\script\baidu_music
 
 perl baidu_music.pl
 
-![baidu_music.png](baidu_music.png)
 ```
+![baidu_music.png](baidu_music.png)
 
 
 * 问题
