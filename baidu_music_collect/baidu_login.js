@@ -32,7 +32,7 @@ casper.wait(1000, function () {
 casper.wait(1000, function () {
     var cookies = JSON.stringify(phantom.cookies);
     fs.write(cookie_file, cookies, 644);
-    console.log("write cookie file : " + cookie_file );
+    console.log("write cookie file : " + cookie_file +"\n");
 });
 
 casper.run();

@@ -14,7 +14,7 @@ close $fh;
 my $cookie_file = "baidu_cookie.txt";
 system("casperjs baidu_login.js $usr $passwd $cookie_file");
 
-print "read music file : $music_file\n";
+print "read music file : $music_file\n\n";
 open my $fh, '<', $music_file;
 while(<$fh>){
     chomp;

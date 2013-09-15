@@ -47,7 +47,7 @@ function collect_song() {
                 var title = this.fetchText('span[class="name"]');
                 status = this.fetchText('div[class="song-page-share clearfix"] span span');
                 status = status.replace('分享','');
-                console.log("song "+ artist + "《 " + title +" 》 : " + status);
+                console.log("song "+ artist + "《 " + title +" 》 : " + status+"\n");
             });
         });
     });
