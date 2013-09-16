@@ -1,7 +1,6 @@
 baidu_music_collect
 =================
-把 本地硬盘保存的音乐文件(flac/mp3)信息 导入 百度音乐 收藏，省得私人音乐频道猜来猜去
-
+把指定 音乐列表 导入 百度音乐 收藏，省得私人音乐频道猜来猜去
 
 * 用法示例
 
@@ -17,7 +16,6 @@ d:
 cd d:\software\script\baidu_music
 
 perl baidu_music.pl
-
 ```
 ![baidu_music.png](baidu_music.png)
 
@@ -29,7 +27,15 @@ perl baidu_music.pl
 
 ** 安装 phantomjs
 
+http://phantomjs.org/
+
+windows下需要把 phantomjs 目录加入PATH环境变量
+
 ** 安装 casperjs
+
+http://casperjs.org/
+
+windows下需要把 casperjs/batchbin 目录加入PATH环境变量
 
 **  安装 perl
 
