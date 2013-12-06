@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+#把Windows Live Messager (MSN) 的xml日志转换成 Pidgin 的txt日志
 use XML::Simple;
 use File::Spec;
 use Encode;
