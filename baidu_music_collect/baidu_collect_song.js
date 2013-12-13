@@ -25,7 +25,6 @@ casper.start();
 var song_id = 0;
 search_song( title, artist );
 collect_song();
-
 casper.run();
 
 function collect_song() {

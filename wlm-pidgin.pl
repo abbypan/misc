@@ -1,9 +1,4 @@
 #!/usr/bin/perl
-#把Windows Live Messager (MSN) 的xml日志转换成 Pidgin 的txt日志
-#使用方法：
-#假设当前用户账号为xxx@hotmail.com，好友账号为yyy@msn.com，日志文件为zzz.xml
-#perl wlm-pidgin.pl xxx@hotmail.com  yyy@msn.com zzz.xml
-
 use XML::Simple;
 use File::Spec;
 use Encode;
