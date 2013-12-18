@@ -2,7 +2,8 @@ baidu_music_collect
 =================
 把指定 音乐列表 导入 百度音乐 收藏，省得私人音乐频道猜来猜去
 
-* 用法示例
+用法示例
+--------
 
 假设脚本位于 d:\baidu_music，其中 
 
@@ -22,18 +23,21 @@ casperjs baidu_music_collect.js cookie.txt music.txt
 ![baidu_music.png](baidu_music.png)
 
 
-* 问题
+问题
+----
 
 目前 artist 匹配较严，如果查"水晶 任贤齐"，取回结果为"水晶 任贤齐/徐怀珏"，是不做收藏的
 
 
-** 安装 phantomjs
+安装 phantomjs
+--------------
 
 http://phantomjs.org/
 
 windows下需要把 phantomjs 目录加入PATH环境变量
 
-** 安装 casperjs
+安装 casperjs
+-------------
 
 http://casperjs.org/
 
