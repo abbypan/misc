@@ -29,12 +29,14 @@ casperjs baidu_music_collect.js cookie.txt id.txt
 ```
 ![baidu_music.png](baidu_music.png)
 
-### 查询音乐id，获取音乐文件url，生成wget批量下载的bat文件，生成xspf播放列表文件
+### 查询音乐id，获取音乐文件url
 ```
 casperjs baidu_music_id.js music.txt id.txt
 
 casperjs baidu_music_url.js id.txt url.txt
-
+```
+### 生成wget批量下载的bat文件，生成xspf播放列表文件
+```
 casperjs baidu_musc_write.js url.txt wget.bat wget
 
 casperjs baidu_musc_write.js url.txt vlc.xspf xspf
