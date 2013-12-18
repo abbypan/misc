@@ -20,57 +20,12 @@ var cookie_file = casper.cli.get(0);
 var data = fs.read(cookie_file);
 phantom.cookies = JSON.parse(data);
 
-var music_file = casper.cli.get(1);
-var music_list = read_music_file(music_file);
+var id_file = casper.cli.get(1);
+var music_list = read_music_file(id_file);
 
 casper.start('http://music.baidu.com');
 casper.each(music_list, function(self, item){
-    search_song(item[0],item[1], collect_song);
-});
-casper.run();
-
-
-function read_music_file(f) {
-//line : title artist
-    var music_data = fs.read(f).match(/[^\r\n]+/g);
-    var res = new Array();
-    for(var m in music_data){
-        var info = music_data[m].match(/^(.+?)\s+(.+)$/) 
-            || music_data[m].match(/^\s*(\S.*)$/);
-        if(!info) continue;
-        info.shift();
-        res.push(info);
-    }
-    return res;
-}
-
-function search_song (title, artist , callback){
-    var key = title;
-    if(artist) key +=" "+artist;
-    //console.log('search song : ' + key + "\n");
-
-    var music_url = 'http://music.baidu.com';
-    casper.thenOpen(music_url);
-    casper.wait(1000, function(){
-        this.fill('form[action="/search"]', { key : key }, true);
-    });
-
-    casper.wait(1000, function(){
-        var song_x = artist ? '//a/em[text()="' + artist + '"]//ancestor::div[@class="song-item clearfix"]' : '';
-        song_x +="//span[@class='song-title']//a[@title='" + title + "']";
-        var collect_x = x(song_x);
-        if (this.exists(collect_x)) {
-            var id = this.getElementAttribute(collect_x,'href');
-            var song_id = id.replace(/#.*/, '').replace(/^.*\//, '');
-            console.log('find song '+ key + ' id ' + song_id);
-            if(callback) callback(song_id);
-        }
-    });
-}
-
-function collect_song(song_id) {
-
-    casper.then(function(){
+        var song_id = item[2];
         if(!song_id) return;
         var collect_url = 'http://music.baidu.com/song/' + song_id;
 
@@ -90,6 +45,17 @@ function collect_song(song_id) {
             status = status.replace('分享','');
             console.log("song "+ artist + "《 " + title +" 》 : " + status+"\n");
             });
-        });
-    });
+});
+});
+casper.run();
+
+function read_music_file(f) {
+    var music_data = fs.read(f).match(/[^\r\n]+/g);
+    var res = new Array();
+    for(var m in music_data){
+        var info = music_data[m].split(/\s+/g);
+        if(!info) continue;
+        res.push(info);
+    }
+    return res;
 }

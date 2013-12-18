@@ -1,6 +1,12 @@
 //abstract: login baidu with usr & passwd, write cookie to file
 //usage: casperjs baidu_login.js someusr somepasswd cookie_file
 
+
+var x = require('casper').selectXPath;
+var fs = require('fs');
+var system = require('system');
+var utils = require('utils');
+
 var casper = require('casper').create({
     //{logLevel: 'debug', verbose: true}, 
     pageSettings: {
@@ -11,32 +17,42 @@ var casper = require('casper').create({
 );
 casper.userAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:18.0) Gecko/20130119 Firefox/18.0');
 
-var fs = require('fs');
+casper.start('http://music.baidu.com');
 
+// cli {{{
 var usr = casper.cli.get(0);
 var passwd = casper.cli.get(1);
-var cookie_file = casper.cli.get(2);
+var cookie = casper.cli.get(2);
+// }}}
 
-console.log("login baidu" );
+// login {{{
+casper.then(function(){
+    if( utils.isUndefined(usr) || utils.isUndefined(passwd) ) return;
 
-var login_url = 'https://passport.baidu.com/v2/?login&amp;tpl=mn&amp;u=http%3A%2F%2Fwww.baidu.com%2F';
-casper.start(login_url);
-casper.wait(1000, function(){
-    this.click('#pass-user-login');
+    console.log("begin login : "+usr);
+    var login_url = 'https://passport.baidu.com/v2/?login&amp;tpl=mn&amp;u=http%3A%2F%2Fwww.baidu.com%2F';
+    this.open(login_url);
+        this.wait(1000, function(){
+        this.click('#pass-user-login')
+        });
+        this.thenEvaluate(function(usr,passwd) {
+        document.querySelector('#TANGRAM__3__userName').setAttribute('value', usr);
+        document.querySelector('#TANGRAM__3__password').setAttribute('value', passwd);
+    }, { 'usr' : usr, 'passwd' : passwd })
+        .thenClick('#TANGRAM__3__submit')
+    .wait(1000, function () {
+        console.log("finish login : "+usr);
+    });
 });
+// }}}
 
-casper.thenEvaluate(function(usr,passwd) {
-    document.querySelector('#TANGRAM__3__userName').setAttribute('value', usr);
-    document.querySelector('#TANGRAM__3__password').setAttribute('value', passwd);
-}, { 'usr' : usr, 'passwd' : passwd });
-casper.wait(1000, function () {
-    this.click('#TANGRAM__3__submit');
+// write_cookie {{{
+casper.then(function () {
+    if( utils.isUndefined(usr) ||  utils.isUndefined(passwd) ||  utils.isUndefined(cookie) ) return;
+    console.log("write cookie file : " + cookie);
+    var cookie_str = JSON.stringify(phantom.cookies);
+    fs.write(cookie,cookie_str, 'w');
 });
-
-casper.wait(1000, function () {
-    var cookies = JSON.stringify(phantom.cookies);
-    fs.write(cookie_file, cookies, 644);
-    console.log("write cookie file : " + cookie_file +"\n");
-});
+// }}}
 
 casper.run();
