@@ -51,6 +51,7 @@ function music_xspf_callback(){
         item : function(m){
             return [ "<track>", 
                 "<location>" + m[4]  + "</location>", 
+                "<image>" + m[5]  + "</image>", 
                 "<title>" + m[1]  + "</title>", 
                 "<creator>" + m[0]  + "</creator>", 
                 "</track>"].join("\n");        

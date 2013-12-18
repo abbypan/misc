@@ -43,7 +43,8 @@ casper.eachThen(read_music_file(music_id), function(item){
             this.thenOpen(url, function(){
                 var song_info = eval(this.getHTML('body'));
                 var u = song_info[0]["file_list"][music_level];
-                var w_str = [ artist, title , u["kbps"], u["format"], u["url"]].join(" ") + "\n";
+                var album_img = song_info[0]["album_image_url"] || '#';
+                var w_str = [ artist, title , u["kbps"], u["format"], u["url"], album_img ].join(" ") + "\n";
                 console.log(w_str);
                 fs.write(music_url, w_str, 'a'); 
             });
