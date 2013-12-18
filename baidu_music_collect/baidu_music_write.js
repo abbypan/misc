@@ -49,11 +49,11 @@ function music_xspf_callback(){
     '<trackList>', 
         tail : '</trackList></playlist>', 
         item : function(m){
-            return [ '<track>', 
-                '<location>' + m[4]  + '</location>', 
-                '<title>' + m[1]  + '</title>', 
-                '<creator>' + m[0]  + '</creator>', 
-                '</track>'].join('');        
+            return [ "<track>", 
+                "<location>" + m[4]  + "</location>", 
+                "<title>" + m[1]  + "</title>", 
+                "<creator>" + m[0]  + "</creator>", 
+                "</track>"].join("\n");        
         }
     }
 }
