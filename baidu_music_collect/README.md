@@ -27,7 +27,7 @@ casperjs baidu_login.js someusr somepasswd cookie.txt
 
 casperjs baidu_music_collect.js cookie.txt id.txt
 ```
-![baidu_music.png](baidu_music.png)
+![baidu_music_collect.png](baidu_music_collect.png)
 
 ### 查询音乐id，获取音乐文件url
 ```
