@@ -35,11 +35,21 @@ casperjs baidu_music_id.js music.txt id.txt
 
 casperjs baidu_music_url.js id.txt url.txt
 ```
-### 生成wget批量下载的bat文件，生成xspf播放列表文件
+
+### 生成wget批量下载的bat文件，生成xspf播放列表
 ```
 casperjs baidu_musc_write.js url.txt wget.bat wget
 
 casperjs baidu_musc_write.js url.txt vlc.xspf xspf
+```
+
+### 取出一个专辑的音乐id，获取音乐文件url，生成xspf播放列表
+```
+casperjs baidu_music_album.js http://music.baidu.com/album/23319159 id_swd3e.txt
+
+casperjs baidu_music_url.js id_swd3e.txt url_swd3e.txt
+
+casperjs baidu_musc_write.js url_swd3e.txt vlc_swd3e.xspf xspf
 ```
 
 问题
