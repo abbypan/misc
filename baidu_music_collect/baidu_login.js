@@ -1,12 +1,16 @@
-//var casper = require('casper').create({logLevel: 'debug', verbose: true});
+//abstract: login baidu with usr & passwd, write cookie to file
+//usage: casperjs baidu_login.js someusr somepasswd cookie_file
+
 var casper = require('casper').create({
-  pageSettings: {
-        loadImages:  false,        // do not load images
-        loadPlugins: false         // do not load NPAPI plugins (Flash, Silverlight, ...)
+    //{logLevel: 'debug', verbose: true}, 
+    pageSettings: {
+        loadImages:  false,        
+    loadPlugins: false  // not load NPAPI plugins (Flash, Silverlight, ...)
     }
 }
 );
 casper.userAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:18.0) Gecko/20130119 Firefox/18.0');
+
 var fs = require('fs');
 
 var usr = casper.cli.get(0);

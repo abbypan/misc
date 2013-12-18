@@ -4,18 +4,20 @@ baidu_music_collect
 
 * 用法示例
 
-假设脚本位于 d:\software\script\baidu_music，其中 
+假设脚本位于 d:\baidu_music，其中 
 
-baidu_login.txt 为登录用户名及密码
-
-baidu_music.txt 为希望收藏的音乐，一行一首歌，歌名在前（必填），歌手在后（可不填）
+- someusr 为用户名，somepasswd 为密码
+- cookie.txt 为存放该用户cookie的文件名
+- music.txt 为希望收藏的音乐，一行一首，歌名在前（必填），歌手在后（可不填）
 
 ```
 d:
 
-cd d:\software\script\baidu_music
+cd d:\baidu_music
 
-perl baidu_music.pl
+casperjs baidu_login.js someusr somepasswd cookie.txt
+
+casperjs baidu_music_collect.js cookie.txt music.txt
 ```
 ![baidu_music.png](baidu_music.png)
 
@@ -36,7 +38,3 @@ windows下需要把 phantomjs 目录加入PATH环境变量
 http://casperjs.org/
 
 windows下需要把 casperjs/batchbin 目录加入PATH环境变量
-
-**  安装 perl
-
-windows版本可选用：http://strawberryperl.com/
