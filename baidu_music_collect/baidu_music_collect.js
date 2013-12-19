@@ -1,6 +1,3 @@
-//abstract: collect song on baidu music site
-//usage: casperjs baidu_music_collect.js cookie_file music_file
-
 var x = require('casper').selectXPath;
 var fs = require('fs');
 var system = require('system');

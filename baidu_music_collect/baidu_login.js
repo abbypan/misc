@@ -1,7 +1,3 @@
-//abstract: login baidu with usr & passwd, write cookie to file
-//usage: casperjs baidu_login.js someusr somepasswd cookie_file
-
-
 var x = require('casper').selectXPath;
 var fs = require('fs');
 var system = require('system');
@@ -19,13 +15,10 @@ casper.userAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:18.0) Gecko/201301
 
 casper.start('http://music.baidu.com');
 
-// cli {{{
 var usr = casper.cli.get(0);
 var passwd = casper.cli.get(1);
 var cookie = casper.cli.get(2);
-// }}}
 
-// login {{{
 casper.then(function(){
     if( utils.isUndefined(usr) || utils.isUndefined(passwd) ) return;
 
@@ -44,15 +37,12 @@ casper.then(function(){
         console.log("finish login : "+usr);
     });
 });
-// }}}
 
-// write_cookie {{{
 casper.then(function () {
     if( utils.isUndefined(usr) ||  utils.isUndefined(passwd) ||  utils.isUndefined(cookie) ) return;
     console.log("write cookie file : " + cookie);
     var cookie_str = JSON.stringify(phantom.cookies);
     fs.write(cookie,cookie_str, 'w');
 });
-// }}}
 
 casper.run();

@@ -1,7 +1,3 @@
-//abstract: login baidu with usr & passwd, write cookie to file
-//usage: casperjs baidu_login.js someusr somepasswd cookie_file
-
-
 var x = require('casper').selectXPath;
 var fs = require('fs');
 var system = require('system');
@@ -19,17 +15,14 @@ casper.userAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:18.0) Gecko/201301
 
 casper.start('http://music.baidu.com');
 
-// cli {{{
 var music_id = casper.cli.get(0) ;
 var music_url = casper.cli.get(1);
 
-// 音质 0 - 3， 0 最好
-var music_level =  casper.cli.get(2) || 0;
-// }}}
+// 音质：0 (最好) ~ 3 (最差)
+var music_level =  casper.cli.get("level") || 0;
 
- //if( utils.isUndefined(music_id) || utils.isUndefined(music_url)  ) return;
- search_list = read_music_file(music_id);
- fs.write(music_url, '', 'w');
+search_list = read_music_file(music_id);
+fs.write(music_url, '', 'w');
 
 casper.eachThen(read_music_file(music_id), function(item){
         var artist = item.data[0];
@@ -49,7 +42,8 @@ casper.eachThen(read_music_file(music_id), function(item){
                 var u = files[music_level];
 
                 var album_img = song_info[0]["album_image_url"] || '#';
-                var w_str = [ artist, title , u["kbps"], u["format"], u["url"], album_img ].join(" ") + "\n";
+                var w_str = [ artist, title , u["kbps"], u["format"], 
+                u["url"].replace(/&amp;.*$/,''), album_img ].join(" ") + "\n";
                 console.log(w_str);
                 fs.write(music_url, w_str, 'a'); 
             });

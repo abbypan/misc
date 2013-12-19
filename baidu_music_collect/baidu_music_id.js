@@ -1,7 +1,3 @@
-//abstract: login baidu with usr & passwd, write cookie to file
-//usage: casperjs baidu_login.js someusr somepasswd cookie_file
-
-
 var x = require('casper').selectXPath;
 var fs = require('fs');
 var system = require('system');
@@ -19,13 +15,9 @@ casper.userAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:18.0) Gecko/201301
 
 casper.start('http://music.baidu.com');
 
-// cli {{{
 var music_search = casper.cli.get(0);
 var music_id = casper.cli.get(1) ;
-// }}}
 
-// search for song id {{{
-//if( utils.isUndefined(music_search) || utils.isUndefined(music_id)  ) return;
 var search_list = read_music_file(music_search);
 fs.write(music_id, '', 'w');
 casper.eachThen(search_list, function(item){
@@ -54,8 +46,6 @@ casper.eachThen(search_list, function(item){
         });
     });
     
-// }}}
-
 casper.run();
 
 function read_music_file(f) {

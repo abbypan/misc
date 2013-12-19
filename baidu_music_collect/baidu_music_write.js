@@ -1,17 +1,13 @@
-//abstract: login baidu with usr & passwd, write cookie to file
-//usage: casperjs baidu_login.js someusr somepasswd cookie_file
-
-
 var x = require('casper').selectXPath;
 var fs = require('fs');
 var system = require('system');
 var utils = require('utils');
 
 var casper = require('casper').create({
-    //{logLevel: 'debug', verbose: true}, 
+    //logLevel: 'debug', verbose: true, 
     pageSettings: {
         loadImages:  false,        
-    loadPlugins: false  // not load NPAPI plugins (Flash, Silverlight, ...)
+        loadPlugins: false  // not load NPAPI plugins (Flash, Silverlight, ...)
     }
 }
 );
@@ -19,26 +15,20 @@ casper.userAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:18.0) Gecko/201301
 
 var callback_info = {
     xspf : music_xspf_callback, 
+    powershell : music_powershell_callback, 
     wget : music_wget_callback 
 };
 
 casper.start('http://music.baidu.com');
 
-// cli {{{
 var music_url = casper.cli.get(0);
 var music_dst = casper.cli.get(1);
 var dst_file_type = casper.cli.get(2) || 'xspf';
-// }}}
 
-
- //if( utils.isUndefined(music_url) ) return;
-
-// write dst file {{{
 casper.then(function(){
  if( utils.isUndefined(music_url) ) return;
   write_music_file(music_url, music_dst, callback_info[dst_file_type]);
 });
-// }}}
 
 casper.run();
 
@@ -59,6 +49,16 @@ function music_xspf_callback(){
     }
 }
 
+function music_powershell_callback(){
+    return function(m){ 
+            return [ 'Invoke-WebRequest ' , 
+                    '"' + m[4] + '" -Method GET -OutFile', 
+        '"' + m[0] +'-' + m[1]+'.'+m[3] + '";' 
+                ].join(' ');
+    }
+
+}
+
 function music_wget_callback(){
     return function(m){ 
     return [ 'wget' , '-c', '"' + m[4] + '"', 
@@ -76,8 +76,11 @@ function write_music_file(music_url, dst_file, cb){
         var s = map_cb(src[i]);
         dst.push(s);
     }
-    var dst_str = (callback.head || '') + "\n" + dst.join("\n") + "\n" + (callback.tail || '') ;
-    fs.write(dst_file, dst_str, 'w');
+
+    var s = dst.join("\n");
+    if(callback.head) s = callback.head + "\n" + s;
+    if(callback.tail) s =  s + "\n" + callback.tail;
+    fs.write(dst_file, s, 'w');
 }
 
 function read_music_file(f) {
