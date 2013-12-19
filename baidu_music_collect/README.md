@@ -78,13 +78,15 @@ perl baidu_music.pl -a http://music.baidu.com/album/177366 -t xspf -o lzs.xspf
 ```
 
 参数说明：
-- u : 用户名
-- p : 密码
-- c : cookie文件
-- m : 音乐文件
-- a : 专辑url，例如 http://music.baidu.com/album/177366
-- o : 目标文件
-- t : 目标动作类型，例如 xspf 播放列表，wget 批量下载文件，收藏歌曲
+```
+u : 用户名
+p : 密码
+c : cookie文件
+m : 音乐文件
+a : 专辑url，例如 http://music.baidu.com/album/177366
+o : 目标文件
+t : 目标动作类型，例如 xspf 播放列表，wget 批量下载文件，收藏歌曲
+```
 
 
 用法示例(baidu_music.ps1，用于windows系统)
