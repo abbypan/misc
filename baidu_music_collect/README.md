@@ -90,8 +90,6 @@ perl baidu_music.pl -a http://music.baidu.com/album/177366 -t xspf -o lzs.xspf
 用法示例(baidu_music.ps1，用于windows系统)
 ------------------------------------------
 ```
-powershell
-
 .\baidu_music_download.ps1  music.txt music_download.ps1
 .\music_download.ps1
 
