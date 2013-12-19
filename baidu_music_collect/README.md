@@ -45,11 +45,12 @@ casperjs baidu_music_collect.js cookie.txt id.txt
 ```
 ![baidu_music_collect.png](baidu_music_collect.png)
 
+
 ### 获取音乐文件url
-- level : 音质, 0 (最好) ~ 3 (最差)，默认取0
+level : 音质, 0 (最好) ~ 3 (最差)，默认取0
+
 ```
 casperjs baidu_music_url.js id.txt url.txt
-
 casperjs baidu_music_url.js id.txt url.txt --level=1
 ```
 
@@ -59,7 +60,6 @@ casperjs baidu_musc_write.js url.txt wget.bat wget
 casperjs baidu_musc_write.js url.txt vlc.xspf xspf
 casperjs baidu_musc_write.js url.txt win.ps1  powershell
 ```
-
 
 用法示例(baidu_music.pl)
 ------------------------
