@@ -21,7 +21,9 @@ casper.start(album_url);
 
 var album_info = new Array();
 casper.then(function(){
-            var album_name = this.getHTML('.album-name');
+        var album_xp = x('//*[@class="album-name"]');
+           
+            var album_name = this.exists(album_xp) ? this.getHTML('.album-name') : this.getHTML('h2.name');
             console.log('album: ' + album_name);
         var ul = this.getHTML('div.body').
             match(/{ 'songItem': ({.+?}) }/g)
