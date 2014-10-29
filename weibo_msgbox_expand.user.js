@@ -7,33 +7,14 @@
 // @include       http://www.weibo.com/*
 // @include       http://weibo.com/*
 // @copyright     2013+, Abby Pan (http://abbypan.github.com/)
-// @version       0.1
+// @version       0.2
 // @author        Abby Pan (abbypan@gmail.com)
 // @homepage      http://abbypan.github.com/
 //
 // ==/UserScript==
 //
 
-
-function displayDiv (xpath) {
-    var at = getDivFromA(xpath);
-    var atDiv = at.parentNode;
-
-    at.setAttribute('node-type', 'lev');
-    atDiv.setAttribute('style', '');
-    atDiv.setAttribute('class', 'lev');
-
-    return atDiv;
-}
-
-function noDisplayDiv (xpath) {
-    var at = getDivFromA(xpath);
-    var atDiv = at.parentNode;
-    atDiv.setAttribute('style', 'display:none');
-    return atDiv;
-}
-
-function getDivFromA (xpath) {
+function getElement (xpath) {
     var at = document.evaluate(
             xpath,
             document,
@@ -44,20 +25,28 @@ function getDivFromA (xpath) {
     return atA;
 }
 
-// @
-displayDiv('//a[@nm="mention_all"]'); 
+var levbox = getElement('//div[@class="lev_Box lev_Box_noborder"]');
+add_url(levbox, '/at/weibo?leftnav=1&wvr=6&nofilter=1', '@我');
+add_url(levbox, '/comment/inbox?leftnav=1&wvr=6', '评论');
+add_url(levbox, '/messages?leftnav=1&wvr=6', '私信');
 
-//评论
-displayDiv('//a[@nm="cmt_all"]'); 
+function add_url(box, url, text){
+    var t = document.createTextNode(text);
 
-//私信
-displayDiv('//a[@nm="dm"]'); 
+    var at_span = document.createElement("span");
+    at_span.setAttribute('class', 'levtxt');
+    at_span.setAttribute('style', 'text-align : center;');
+    at_span.appendChild(t);
 
-//消息
-noDisplayDiv('//a[@nm="messagebox_c"]');
+    var at = document.createElement("a");
+    at.setAttribute('class', 'S_txt1');
+    at.setAttribute('node-type', 'item');
+    at.setAttribute('href', url);
+    at.appendChild(at_span);
 
-//收藏
-noDisplayDiv('//a[@href="/fav?leftnav=1&wvr=5"]');
+    var at_h3 = document.createElement("h3");
+    at_h3.setAttribute('class', 'lev');
+    at_h3.appendChild(at);
 
-//密友
-noDisplayDiv('//a[@href="/mymeyou?ismiyou=1&wvr=5&step=2"]');
+    box.appendChild(at_h3);
+}
