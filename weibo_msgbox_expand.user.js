@@ -2,14 +2,14 @@
 //
 // ==UserScript==
 // @name          weibo_msgbox_expand
-// @namespace     http://abbypan.github.com/
+// @namespace     http://abbypan.github.io/
 // @description   微博消息箱展开
-// @include       http://www.weibo.com/*
 // @include       http://weibo.com/*
-// @copyright     2013+, Abby Pan (http://abbypan.github.com/)
+// @include       http://www.weibo.com/*
+// @copyright     2013+, Abby Pan (http://abbypan.github.io/)
 // @version       0.2
 // @author        Abby Pan (abbypan@gmail.com)
-// @homepage      http://abbypan.github.com/
+// @homepage      http://abbypan.github.io/
 //
 // ==/UserScript==
 //
@@ -24,11 +24,6 @@ function getElement (xpath) {
     var atA = at.snapshotItem(0);
     return atA;
 }
-
-var levbox = getElement('//div[@class="lev_Box lev_Box_noborder"]');
-add_url(levbox, '/at/weibo?leftnav=1&wvr=6&nofilter=1', '@我');
-add_url(levbox, '/comment/inbox?leftnav=1&wvr=6', '评论');
-add_url(levbox, '/messages?leftnav=1&wvr=6', '私信');
 
 function add_url(box, url, text){
     var t = document.createTextNode(text);
@@ -50,3 +45,8 @@ function add_url(box, url, text){
 
     box.appendChild(at_h3);
 }
+
+var levbox = getElement('//div[@class="lev_Box lev_Box_noborder"]');
+add_url(levbox, '/at/weibo?leftnav=1&wvr=6&nofilter=1', '@我');
+add_url(levbox, '/comment/inbox?leftnav=1&wvr=6', '评论');
+add_url(levbox, '/messages?leftnav=1&wvr=6', '私信');
