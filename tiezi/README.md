@@ -55,5 +55,7 @@ discuz_to_html.pl : cpanm SimpleDBI Encode::Locale Novel::Robot::Packer
 其他pl : cpanm HTML::Template::Expr Date::Calc Teng
 
 windows环境下：需要用到mkdir和curl
+
 mkdir win32版本：http://unxutils.sourceforge.net/
+
 curl win32版本：http://curl.haxx.se/latest.cgi?curl=win32-nossl
