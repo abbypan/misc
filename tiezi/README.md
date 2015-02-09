@@ -10,8 +10,11 @@
 ## tiezi_discuz_cjj.pl
 
 下载CJJ的帖子
+
 站点：CJJ, discuz 6 左右的版本
+
 用法：./tiezi_discuz_cjj.pl -s http://xxx.xxx.xxx -u username -p password
+
 注：停止更新
 
 ## tiezi_hjj.pl
